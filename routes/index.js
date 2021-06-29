@@ -2,6 +2,7 @@ const router = require('express').Router();
 const unirest = require("unirest");
 
 router.get('/api/:user/:platform', async (req,res)=>{
+    console.log('hit api server')
     let {user, platform} = req.params;
     user = user.replace('#', '%23')
     const foreignReq = unirest("GET", `https://call-of-duty-modern-warfare.p.rapidapi.com/warzone/${user}/${platform}`);
@@ -11,6 +12,7 @@ router.get('/api/:user/:platform', async (req,res)=>{
         "useQueryString": true
     });
     foreignReq.end(function (data) {
+        console.log('data', data.body)
         if (data.error) {
             res.json(data.error);
         }
