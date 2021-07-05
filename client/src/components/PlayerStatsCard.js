@@ -1,6 +1,6 @@
 import React from 'react'
 
-function PlayerStatsCard({data, name}) {
+function PlayerStatsCard({data, name, close}) {
     const {kdRatio, kills, deaths, wins, gamesPlayed} = data.br;
     const kd = kdRatio.toFixed(2)
     const winPer = (wins/gamesPlayed * 100).toFixed(2);
@@ -13,7 +13,7 @@ function PlayerStatsCard({data, name}) {
             <p>Win %: {winPer}</p>
             <p>Wins: {wins}</p>
             <p>Games Played: {gamesPlayed}</p>
-            <button className="removePlayerBtn">X</button>
+            <button className="removePlayerBtn" onClick={close}>X</button>
         </div>
     )
 }

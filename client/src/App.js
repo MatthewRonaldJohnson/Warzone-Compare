@@ -25,12 +25,28 @@ function App() {
       setP2Bool(true);
     }
   }
+  function closeP2() {
+    setP2Bool(false);
+    setP2DataState({});
+    setp2User('');
+  }
+  async function closeP1() {
+    if (p2Bool) {
+      await setP1DataState(p2DataState);
+      await setp1User(p2User);
+      closeP2();
+    } else {
+      setp1Bool(false);
+      setP1DataState({});
+      setp1User('');
+    }
+  }
 
   return (
     <>
       <Header />
       <div id="main">
-        {p1Bool && <PlayerStatsCard data={p1DataState} name={p1User} />}
+        {p1Bool && <PlayerStatsCard data={p1DataState} name={p1User} close={closeP1} />}
         {p2Bool && <PlayerStatsCard data={p2DataState} name={p2User} />}
         {!p2Bool && <AddPlayerCard fetchUserStats={fetchUserStats} />}
         {p2Bool && <ComparisonCard p1Data={p1DataState} p2Data={p2DataState} />}
