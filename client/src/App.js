@@ -15,6 +15,13 @@ function App() {
   const [p2User, setp2User] = useState('');
   async function fetchUserStats(user, platform) {
     const data = await API.getPlayerStats(user, platform);
+    //stops code if form submitted w/o user input
+    if(!data) return;
+    //stops code if api does not return user
+    if(data.error){
+      console.log('error')
+      return
+    } 
     if (!p1Bool) {
       await setP1DataState(data);
       await setp1User(user);
@@ -47,7 +54,7 @@ function App() {
       <Header />
       <div id="main">
         {p1Bool && <PlayerStatsCard data={p1DataState} name={p1User} close={closeP1} />}
-        {p2Bool && <PlayerStatsCard data={p2DataState} name={p2User} />}
+        {p2Bool && <PlayerStatsCard data={p2DataState} name={p2User} close={closeP2} />}
         {!p2Bool && <AddPlayerCard fetchUserStats={fetchUserStats} />}
         {p2Bool && <ComparisonCard p1Data={p1DataState} p2Data={p2DataState} />}
       </div>
