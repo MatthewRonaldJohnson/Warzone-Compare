@@ -1,9 +1,27 @@
 #main {
     display: flex;
+    justify-content: space-around;
+    outline: green solid;
+}
 
+body {
+    outline: red solid;
+    
 }
 
 #addPlayerCard {
     display: flex;
     flex-direction: column;
+    outline: black solid;
+}
+
+.playerStatsCard {
+    position: relative;
+    outline: purple solid;
+}
+
+.removePlayerBtn {
+    position: absolute; 
+    top: 0;
+    right: 0;
 }

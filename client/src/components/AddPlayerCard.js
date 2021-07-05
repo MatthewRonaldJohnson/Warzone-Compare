@@ -23,6 +23,7 @@ function AddPlayerCard(props) {
                 <option value="psn">Playstation</option>
                 <option value="xbl">Xbox</option>
             </select>
+            <button type='submit'>Submit</button>
         </form>
     )
 }

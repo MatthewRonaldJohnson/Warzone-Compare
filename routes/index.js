@@ -12,7 +12,6 @@ router.get('/api/:user/:platform', async (req,res)=>{
         "useQueryString": true
     });
     foreignReq.end(function (data) {
-        console.log('data', data.body)
         if (data.error) {
             res.json(data.error);
         }
