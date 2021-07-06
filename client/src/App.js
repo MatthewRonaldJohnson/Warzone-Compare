@@ -15,19 +15,19 @@ function App() {
   const [p2User, setp2User] = useState('');
   async function fetchUserStats(user, platform) {
     const data = await API.getPlayerStats(user, platform);
-    //stops code if form submitted w/o user input
-    if(!data) return;
     //stops code if api does not return user
     if(data.error){
-      console.log('error')
+      console.log('error user not found')
       return
-    } 
+    }
+    data.br.winPer = (data.br.wins / data.br.gamesPlayed *100).toFixed(2);
+    data.br.kdRatio = (data.br.kdRatio).toFixed(2);
     if (!p1Bool) {
-      await setP1DataState(data);
+      await setP1DataState(data.br);
       await setp1User(user);
       setp1Bool(true);
     } else {
-      await setP2DataState(data);
+      await setP2DataState(data.br);
       await setp2User(user);
       setP2Bool(true);
     }
